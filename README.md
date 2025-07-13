@@ -135,7 +135,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Your Name - [@yourusername](https://twitter.com/Ethan35954202) - et.wuzz@gmail.com
+Your Name - [@Ethan35954202](https://twitter.com/Ethan35954202) - et.wuzz@gmail.com
 
 Project Link: [https://github.com/yourusername/capturegram](https://github.com/tastymooncakes/Capture-Gram)
 
