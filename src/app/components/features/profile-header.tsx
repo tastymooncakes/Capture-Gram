@@ -2,11 +2,17 @@
 
 import { getUserProfile } from "@/app/lib/api/user"
 import { useQuery } from "@tanstack/react-query"
-import { Settings, Camera } from 'lucide-react'
+import { Settings, Camera, Grid3x3, Square, GalleryVertical, ShoppingBag } from 'lucide-react'
 import { LoadingScreen } from "../ui/loading-screen"
+import { cn } from "@/app/lib/utils"
 
 
-export function ProfileHeader() {
+interface ProfileHeaderProps {
+    activeView: 'grid' | 'posts' | 'products'
+    onViewChange: (view: 'grid' | 'posts' ) => void
+}
+
+export function ProfileHeader( { activeView, onViewChange }: ProfileHeaderProps ) {
     const { data: profile} = useQuery({
         queryKey: ['user-profile'],
         queryFn: getUserProfile
@@ -56,7 +62,7 @@ export function ProfileHeader() {
                         {/* Stats - Desktop only in this section */}
                         <div className="hidden md:flex gap-8 mb-6">
                             <span className="text-sm">
-                                <strong>{profile.asset_count}</strong> posts
+                                <strong>{profile.asset_count}</strong> assets
                             </span>
                             <span className="text-sm">
                                 <strong>{profile.follower_count}</strong> followers
@@ -98,7 +104,7 @@ export function ProfileHeader() {
                     <div className="flex justify-around text-center border-t border-t-white/15 pt-4">
                         <div>
                             <div className="font-semibold text-sm">{profile.asset_count}</div>
-                            <div className="text-xs text-gray-500">posts</div>
+                            <div className="text-xs text-gray-500">assets</div>
                         </div>
                         <div>
                             <div className="font-semibold text-sm">{profile.follower_count}</div>
@@ -107,6 +113,35 @@ export function ProfileHeader() {
                         <div>
                             <div className="font-semibold text-sm">{profile.following_count}</div>
                             <div className="text-xs text-gray-500">following</div>
+                        </div>
+                    </div>
+
+                    {/* Toggle States */}
+                    <div className="border-t border-t-white/15">
+                        <div className="flex mt-4">
+                            <button
+                                onClick={() => onViewChange('grid')}
+                                className={cn('flex flex-1 items-center justify-center gap-2', 
+                                    activeView === 'grid' ? 'border-white text-white' : 'border-gray-700 text-gray-700'
+                                 )}
+                            >
+                                <Grid3x3 className="w-6 h-6"/>
+                            </button>
+                            <button
+                                onClick={() => onViewChange('posts')}
+                                className={cn('flex flex-1 items-center justify-center gap-2', 
+                                    activeView === 'posts' ? 'border-white text-white' : 'border-gray-700 text-gray-700'
+                                 )}
+                            >
+                                <GalleryVertical className="w-6 h-6" />
+                            </button>
+                            <button
+                                className={cn('flex flex-1 items-center justify-center gap-2', 
+                                    activeView === 'products' ? 'border-white text-white' : 'border-gray-700 text-gray-700'
+                                 )}
+                            >
+                                <ShoppingBag className="w-6 h-6" />
+                            </button>
                         </div>
                     </div>
                 </div>

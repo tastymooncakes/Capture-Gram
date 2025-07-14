@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useAuth } from "../lib/hooks/use-auth"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ProfileHeader } from "../components/features/profile-header";
 import { PhotoGrid } from "../components/features/photo-grid";
 import { LoadingScreen } from "../components/ui/loading-screen";
@@ -10,6 +10,8 @@ import { LoadingScreen } from "../components/ui/loading-screen";
 export default function ProfilePage() {
     const { isAuthenticated, isLoading } = useAuth()
     const router = useRouter();
+    const [activeView, setActiveView] = useState<'grid' | 'posts'>('grid')
+
 
     useEffect(() => {
         if (!isLoading && !isAuthenticated) {
@@ -32,10 +34,14 @@ export default function ProfilePage() {
     return (
         <div className="min-h-screen">
             <div className="max-w-4xl mx-auto">
-                <ProfileHeader />
+                <ProfileHeader activeView={activeView} onViewChange={setActiveView}/>
 
-                <div className="mt-8">
-                    <PhotoGrid />
+                <div className="md:mt-8">
+                    {activeView === 'grid' ? (
+                        <PhotoGrid />
+                    ) :
+                        <div>Coming Soon!</div> 
+                    }
                 </div>
             </div>
         </div>

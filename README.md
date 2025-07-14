@@ -1,4 +1,4 @@
-# CapturGram 📸
+# CaptureGram 📸
 
 A modern social media platform built with Next.js, featuring blockchain-powered photo sharing through the Numbers Protocol Capture SDK.
 

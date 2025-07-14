@@ -20,7 +20,7 @@ interface AssetsResponse {
 }
 
 export async function getUserAssets(limit: number = 12, offset: number = 0): Promise<AssetsResponse>{
-    return apiClient.request(`/assets/?limit=${limit}&offset=${offset}`)
+    return apiClient.request(`/assets/?limit=${limit}&offset=${offset}&is_original_owner=true`)
 }
 
 export async function getAssetId(cid: string): Promise<Asset>{
