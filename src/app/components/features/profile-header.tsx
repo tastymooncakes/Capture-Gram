@@ -74,8 +74,8 @@ export function ProfileHeader( { activeView, onViewChange }: ProfileHeaderProps 
 
                         {/* Bio - Desktop only in this section */}
                         <div className="hidden md:block text-sm">
-                            {profile.profile.display_name && (
-                                <div className="font-bold mb-1">{profile.profile.display_name}</div>
+                            {profile.username && (
+                                <div className="font-bold mb-1">{profile.username}</div>
                             )}
                             {profile.profile.description && (
                                 <div className="whitespace-pre-line">
@@ -143,6 +143,35 @@ export function ProfileHeader( { activeView, onViewChange }: ProfileHeaderProps 
                                 <ShoppingBag className="w-6 h-6" />
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className="hidden md:block">
+                <div className="flex justify-center border-t border-t-gray-700 mt-4">
+                    <div className="flex">
+                        <button
+                            onClick={() => onViewChange('grid')}
+                            className={cn(
+                                'flex items-center justify-center gap-2 px-8 py-3 text-xs font-medium tracking-wide border-t-2 transition-colors',
+                                activeView === 'grid' 
+                                    ? 'border-white text-white' 
+                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                            )}
+                        >
+                            <Grid3x3 className="w-4 h-4"/>
+                            <span>ASSETS</span>
+                        </button>
+                        <button
+                            className={cn(
+                                'flex items-center justify-center gap-2 px-8 py-3 text-xs font-medium tracking-wide border-t-2 transition-colors',
+                                activeView === 'products' 
+                                    ? 'border-black text-black' 
+                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                            )}
+                        >
+                            <ShoppingBag className="w-4 h-4" />
+                            <span>PRODUCTS</span>
+                        </button>
                     </div>
                 </div>
             </div>

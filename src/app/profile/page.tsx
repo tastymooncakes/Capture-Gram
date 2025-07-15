@@ -36,7 +36,7 @@ export default function ProfilePage() {
             <div className="max-w-4xl mx-auto">
                 <ProfileHeader activeView={activeView} onViewChange={setActiveView}/>
 
-                <div className="md:mt-8">
+                <div>
                     {activeView === 'grid' ? (
                         <PhotoGrid />
                     ) :
